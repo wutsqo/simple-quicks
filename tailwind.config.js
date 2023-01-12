@@ -29,7 +29,27 @@ module.exports = {
         "sticker-6": "#CFCEF9",
         "sticker-7": "#F9E0FD",
       },
+      height: {
+        112: "28rem",
+        128: "32rem",
+        144: "36rem",
+        160: "40rem",
+        176: "44rem",
+        192: "48rem",
+        "quick-start": "68px",
+        "quick-tab": "60px",
+      },
+      width: {
+        112: "28rem",
+        128: "32rem",
+        144: "36rem",
+        160: "40rem",
+        176: "44rem",
+        192: "48rem",
+        "quick-start": "68px",
+        "quick-tab": "60px",
+      },
     },
   },
   plugins: [],
-};
+}
