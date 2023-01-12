@@ -8,8 +8,7 @@ export const QuickStart: FC<QuickStartProps> = ({ onClick, hidden }) => {
     <button
       title="Quick Start"
       className={classNames(
-        "h-quick-start w-quick-start rounded-full bg-primary flex justify-center \
-        items-center z-10 absolute",
+        "h-quick-start w-quick-start rounded-full bg-primary flex justify-center items-center z-10 absolute",
         hidden ? "hidden" : ""
       )}
       onClick={onClick}
