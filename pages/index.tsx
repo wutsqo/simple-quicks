@@ -1,6 +1,12 @@
-import Head from "next/head";
+import { QuickContainer } from "../components/QuickContainer"
+import { QuickInbox, QuickStart, QuickTask } from "../components/QuickTabs"
+import { QuickTabWrapperState } from "../components/QuickTabs/interface"
+import Head from "next/head"
+import { useState } from "react"
 
 export default function Home() {
+  const [state, setState] = useState<QuickTabWrapperState>("initial")
+
   return (
     <>
       <Head>
@@ -10,7 +16,36 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="text-lg">Hello World</main>
+      <div className="fixed right-8 bottom-8 h-quick-start w-quick-start">
+        <QuickContainer state={state}>this i</QuickContainer>
+
+        <QuickStart
+          onClick={() => {
+            setState((prev) => (prev === "initial" ? "expanded" : "initial"))
+          }}
+          hidden={!(state === "initial" || state === "expanded")}
+        />
+
+        <QuickInbox
+          onClick={() => {
+            setState("inbox")
+          }}
+          onClose={() => {
+            setState("initial")
+          }}
+          state={state}
+        />
+
+        <QuickTask
+          onClick={() => {
+            setState("task")
+          }}
+          onClose={() => {
+            setState("initial")
+          }}
+          state={state}
+        />
+      </div>
     </>
-  );
+  )
 }
