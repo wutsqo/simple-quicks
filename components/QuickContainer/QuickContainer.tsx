@@ -13,10 +13,8 @@ export const QuickContainer: FC<QuickContainerProps> = ({
   return (
     <div
       className={classNames(
-        "w-176 absolute bg-white bottom-28 right-0 rounded transition-all duration-300 ease-in-out overflow-x-auto",
-        state === "initial" || state === "expanded"
-          ? "h-0 p-0 "
-          : "h-176 px-[32px] py-[24px]"
+        "w-176 absolute bg-white bottom-24 right-0 rounded transition-all duration-300 ease-in-out overflow-x-auto",
+        state === "initial" || state === "expanded" ? "h-0" : "h-176"
       )}
       {...props}
     >

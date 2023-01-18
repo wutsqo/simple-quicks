@@ -1,11 +1,14 @@
 import { QuickContainer } from "../components/QuickContainer"
 import { QuickInbox, QuickStart, QuickTask } from "../components/QuickTabs"
-import { QuickTabWrapperState } from "../components/QuickTabs/interface"
+import { ContainerContext, InboxContext, QuickLauncherState } from "../context"
 import Head from "next/head"
 import { useState } from "react"
 
 export default function Home() {
-  const [state, setState] = useState<QuickTabWrapperState>("initial")
+  const [containerState, setContainerState] =
+    useState<QuickLauncherState>("initial")
+  const [activeChatId, setActiveChatId] = useState<string | null>(null)
+  const removeActiveChatId = () => setActiveChatId(null)
 
   return (
     <>
@@ -16,36 +19,46 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="fixed right-8 bottom-8 h-quick-start w-quick-start">
-        <QuickContainer state={state}>this i</QuickContainer>
+      <ContainerContext.Provider value={{ containerState, setContainerState }}>
+        <InboxContext.Provider
+          value={{ activeChatId, setActiveChatId, removeActiveChatId }}
+        >
+          <div className="fixed right-8 bottom-8 h-quick-start w-quick-start">
+            <QuickContainer state={containerState}>this i</QuickContainer>
 
-        <QuickStart
-          onClick={() => {
-            setState((prev) => (prev === "initial" ? "expanded" : "initial"))
-          }}
-          hidden={!(state === "initial" || state === "expanded")}
-        />
+            <QuickStart
+              onClick={() => {
+                setContainerState((prev) =>
+                  prev === "initial" ? "expanded" : "initial"
+                )
+              }}
+              hidden={
+                !(containerState === "initial" || containerState === "expanded")
+              }
+            />
 
-        <QuickInbox
-          onClick={() => {
-            setState("inbox")
-          }}
-          onClose={() => {
-            setState("initial")
-          }}
-          state={state}
-        />
+            <QuickInbox
+              onClick={() => {
+                setContainerState("inbox")
+              }}
+              onClose={() => {
+                setContainerState("initial")
+              }}
+              state={containerState}
+            />
 
-        <QuickTask
-          onClick={() => {
-            setState("task")
-          }}
-          onClose={() => {
-            setState("initial")
-          }}
-          state={state}
-        />
-      </div>
+            <QuickTask
+              onClick={() => {
+                setContainerState("task")
+              }}
+              onClose={() => {
+                setContainerState("initial")
+              }}
+              state={containerState}
+            />
+          </div>
+        </InboxContext.Provider>
+      </ContainerContext.Provider>
     </>
   )
 }

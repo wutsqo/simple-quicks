@@ -49,6 +49,12 @@ module.exports = {
         "quick-start": "68px",
         "quick-tab": "60px",
       },
+      borderRadius: {
+        "5px": "5px",
+      },
+      fontSize: {
+        "2xs": "0.625rem",
+      },
     },
   },
   plugins: [],
