@@ -1,3 +1,7 @@
 export { LightningIcon } from "./LightningIcon"
 export { InboxIcon } from "./InboxIcon"
 export { TaskIcon } from "./TaskIcon"
+export { SearchIcon } from "./SearchIcon"
+export { SpinnerIcon } from "./SpinnerIcon"
+export { ArrowLeft } from "./ArrowLeft"
+export { CloseIcon } from "./CloseIcon"
